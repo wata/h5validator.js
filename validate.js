@@ -35,8 +35,8 @@
     };
 
     Validate.prototype.check = function(event){
-        var that = this, $target = $(event.currentTarget), val = $target.val(),
-            rules = that.getRules(event.currentTarget), isValid = true, result;
+        var that = this, $target = $(event.target), val = $target.val(),
+            rules = that.getRules(event.target), isValid = true, result = {};
 
         $.each(rules, function(rule, param){
             result[rule] = that[rule].call(that, val, param);
@@ -58,17 +58,17 @@
     };
 
     Validate.prototype.getRules = function(obj){
-        var that = this, $el = $(obj);
+        var that = this, $el = $(obj), rules = {};
 
         $.each(that.opts.typeRules, function(i, rule){
-            $el.attr('type') == rule && (that.rules[rule] = rule);
+            $el.attr('type') == rule && (rules[rule] = rule);
         });
 
         $.each(that.opts.attrRules, function(i, rule){
-            $el.attr(rule) && (that.rules[rule] = $el.attr(rule));
+            $el.attr(rule) && (rules[rule] = $el.attr(rule));
         });
 
-        return that.rules;
+        return rules;
     };
 
     Validate.prototype.email = function(val){
