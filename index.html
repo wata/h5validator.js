@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>validate.js</title>
+<style>
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html, body {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+body {
+    font-size: 14px;
+    color: #333;
+}
+section {
+    margin: 0 0 60px 30px;
+}
+
+#wrapper {
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 600px;
+}
+#wrapper h1 {
+    font-size: 50px;
+    font-weight: normal;
+    margin: 0;
+}
+#wrapper h1 a, #wrapper h1 a:visited {
+    color: #666;
+}
+#wrapper h1 a:hover {
+    color: #666;
+}
+#wrapper h2 {
+    font-size: 30px;
+    font-weight: normal;
+    margin-left: -30px;
+    padding: 20px 0 9px;
+    border-bottom: 1px solid #eee;
+}
+#wrapper h3 {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 20px 0 10px;
+}
+#wrapper p {
+    margin: 0;
+}
+#wrapper a, #wrapper a:visited {
+    color: #428bca;
+    text-decoration: none;
+}
+#wrapper a:hover {
+    color: #2a6496;
+}
+#wrapper pre.prettyprint {
+    border-color: #ccc;
+    overflow: auto;
+}
+#wrapper .nav {
+    padding: 0;
+    font-size: 21px;
+    list-style: none;
+}
+#wrapper .nav li {
+    display: inline-block;
+}
+#wrapper .lead {
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+#form dl {
+    margin-bottom: 30px;
+}
+#form dt {
+    float: left;
+    clear: left;
+    width: 120px;
+    text-align: right;
+}
+#form dd {
+    margin: 0 0 10px 140px;
+}
+#form input {
+    width: 300px;
+    height: 34px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+}
+#form button {
+    color: #333;
+    background-color: #fff;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-left: 140px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#form .valid {
+    border: 1px solid #3c763d;
+}
+#form .invalid {
+    border: 1px solid #a94442;
+}
+#form .feedback {
+    margin-left: 10px;
+}
+#form .feedback-success {
+    color: #3c763d;
+}
+#form .feedback-error {
+    color: #a94442;
+}
+</style>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+</head>
+<body>
+    <a href="https://github.com/wata/validate.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <div id="wrapper">
+        <h1><a href="http://wata.github.io/validate.js">validate.js</a></h1>
+        <p class="lead">
+            This is client-side validation (HTML5).
+        </p>
+        <ul class="nav">
+            <li><a href="#Getting-started">Getting started</a> /</li>
+            <li><a href="#Option">Option</a> /</li>
+            <li><a href="#Event">Event</a> /</li>
+            <li><a href="#DEMO">DEMO</a></li>
+        </ul>
+
+        <section>
+            <h2 id="Getting-started">Getting started</h2>
+
+            <h3>Download</h3>
+            <ul>
+                <li>
+                    <a href="http://wata.github.io/validate.js/validate.js">validate.js</a>
+                </li>
+            </ul>
+
+            <h3>HTML</h3>
+            <p>Require jQuery.</p>
+<pre class="prettyprint lang-html">
+...
+&lt;form id="form"&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email" placeholder="Your email"&gt;
+    ...
+&lt;/form&gt;
+...
+&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="validate.js"&gt;&lt;/script&gt;
+...
+</pre>
+
+            <h3>CSS</h3>
+            <p>e.g.</p>
+<pre class="prettyprint lang-css">
+#form .valid {
+    border: 1px solid #3c763d;
+}
+#form .invalid {
+    border: 1px solid #a94442;
+}
+</pre>
+
+            <h3>Via data attributes</h3>
+            <p>Require "js-validate" class.</p>
+<pre class="prettyprint lang-html">
+&lt;form class="js-validate" data-validClass="success" data-invalidClass="error" data-events="change"&gt;
+   ...
+&lt;/form&gt;
+</pre>
+
+            <h3>Via JavaScript</h3>
+<pre class="prettyprint lang-js">
+$('#form').validate({
+    validClass: 'success',
+    invalidClass: 'error',
+    events: 'change'
+});
+</pre>
+        </section>
+
+        <section>
+            <h2 id="Option">Option</h2>
+
+            <dl>
+                <dt>validClass</dt>
+                <dd>
+                    <ul>
+                        <li>[String]</li>
+                        <li>Add this class when value is valid.</li>
+                    </ul>
+                </dd>
+
+                <dt>invalidClass</dt>
+                <dd>
+                    <ul>
+                        <li>[String]</li>
+                        <li>Add this class when value is invalid.</li>
+                    </ul>
+                </dd>
+
+                <dt>events</dt>
+                <dd>
+                    <ul>
+                        <li>[String]</li>
+                        <li>Run validate when these events are fired.</li>
+                    </ul>
+                </dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2 id="Event">Event</h2>
+
+            <h3>check.validate</h3>
+            <p>This event is fired when form is checked.</p>
+<pre class="prettyprint lang-js">
+$('#form').on('check.validate', function(e){
+    var $target = $(e.relatedTarget);
+
+    $target
+        .next('.feedback')
+        .removeClass('feedback-success')
+        .removeClass('feedback-error')
+        .addClass(e.isValid ? 'feedback-success' : 'feedback-error')
+        .html(e.isValid ? 'success' : 'error');
+
+    console.log(e.checkResult);
+
+    e.relatedTarget; // -> target selector
+    e.isValid;       // -> true or false
+    e.checkResult;   // -> result object
+});
+</pre>
+        </section>
+
+        <section>
+            <h2 id="DEMO">DEMO</h2>
+            <p>
+                <a href="view-source:http://wata.github.io/validate.js/">source</a>
+            </p>
+
+            <form id="form" class="js-validate" data-events="keyup focusout blur">
+                <h3>Type Rules</h3>
+                <dl>
+                    <dt><label for="email">Email</label></dt>
+                    <dd>
+                        <input type="email" id="email" placeholder='type="email"'>
+                        <span class="feedback"></span>
+                    </dd>
+
+                    <dt><label for="url">URL</label></dt>
+                    <dd>
+                        <input type="url" id="url" placeholder='type="url"'>
+                        <span class="feedback"></span>
+                    </dd>
+
+                    <dt><label for="number">Number</label></dt>
+                    <dd>
+                        <input type="number" id="number" placeholder='type="number"'>
+                        <span class="feedback"></span>
+                    </dd>
+
+                    <dt><label for="date">Date</label></dt>
+                    <dd>
+                        <input type="date" id="date" placeholder='type="date"'>
+                        <span class="feedback"></span>
+                    </dd>
+                </dl>
+
+                <h3>Attribute Rules</h3>
+                <dl>
+                    <dt><label for="required">Required</label></dt>
+                    <dd>
+                        <input type="text" id="required" placeholder="required" required>
+                        <span class="feedback"></span>
+                    </dd>
+
+                    <dt><label for="maxlength">Maxlength</label></dt>
+                    <dd>
+                        <input type="text" id="maxlength" placeholder='maxlength="5"' maxlength="5">
+                        <span class="feedback"></span>
+                    </dd>
+
+                    <dt><label for="pattern">Pattern</label></dt>
+                    <dd>
+                        <input type="text" id="pattern" placeholder='pattern="abcd"' pattern="abcd">
+                        <span class="feedback"></span>
+                    </dd>
+
+                    <dt><label for="min-max-step">Min / Max / Step</label></dt>
+                    <dd>
+                        <input type="number" id="min-max-step" placeholder='min="0" max="10" step="2"' min="0" max="10" step="2">
+                        <span class="feedback"></span>
+                    </dd>
+                </dl>
+
+                <p>
+                    <button type="submit">Submit</button>
+                </p>
+            </form>
+        </section>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="validate.js"></script>
+    <script>
+        $('#form').on('check.validate', function(e){
+            var $target = $(e.relatedTarget);
+
+            $target
+                .next('.feedback')
+                .removeClass('feedback-success')
+                .removeClass('feedback-error')
+                .addClass(e.isValid ? 'feedback-success' : 'feedback-error')
+                .html(e.isValid ? 'success' : 'error');
+
+            console.log(e.checkResult);
+        });
+    </script>
+</body>
+</html>
