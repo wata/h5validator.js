@@ -44,8 +44,8 @@
         });
 
         var e = $.Event('check.validate', {
-            relatedTarget: $target,
-            result       : result,
+            relatedTarget: $target.get(0),
+            checkResult  : result,
             isValid      : isValid
         });
         that.$form.trigger(e);
