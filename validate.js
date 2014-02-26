@@ -82,7 +82,7 @@
     };
 
     Validate.prototype.number = function(val){
-        return /^-?(?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(val);
+        return /^-?[0-9]+$/.test(val);
     };
 
     Validate.prototype.date = function(val){
@@ -98,20 +98,20 @@
     };
 
     Validate.prototype.pattern = function(val, pattern){
-        return pattern.test(val);
+        return new RegExp(pattern).test(val);
     };
 
     Validate.prototype.min = function(val, min){
-        return val >= min;
+        return Number(val) >= Number(min);
     };
 
     Validate.prototype.max = function(val, max){
-        return val <= max;
+        return Number(val) <= Number(max);
     };
 
     Validate.prototype.step = function(val, step){
         // http://stackoverflow.com/questions/12899340/validate-html5-number-input-with-a-step-of-0-1
-        return Math.abs((Math.round(val / step) * step) - val) > 0.00001;
+        return !(Math.abs((Math.round(val / step) * step) - val) > 0.00001);
     };
 
     // Validate PLUGIN DEFINITION
