@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>validate.js</title>
+<title>h5validator.js</title>
 <style>
 * {
     -webkit-box-sizing: border-box;
@@ -133,12 +133,12 @@ section {
 <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 </head>
 <body>
-    <a href="https://github.com/wata/validate.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+    <a href="https://github.com/wata/h5validator.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 
     <div id="wrapper">
-        <h1><a href="http://wata.github.io/validate.js">validate.js</a></h1>
+        <h1><a href="http://wata.github.io/h5validator.js">h5validator.js</a></h1>
         <p class="lead">
-            This is client-side validation (HTML5).
+            This is client-side validation for HTML5.
         </p>
         <ul class="nav">
             <li><a href="#Getting-started">Getting started</a> /</li>
@@ -153,7 +153,7 @@ section {
             <h3>Download</h3>
             <ul>
                 <li>
-                    <a href="http://wata.github.io/validate.js/validate.js">validate.js</a>
+                    <a href="http://wata.github.io/h5validator.js/h5validator.js">h5validator.js</a>
                 </li>
             </ul>
 
@@ -167,8 +167,8 @@ section {
     ...
 &lt;/form&gt;
 ...
-&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script src="validate.js"&gt;&lt;/script&gt;
+&lt;script src="//code.jquery.com/jquery-1.11.3.min.js"&gt;&lt;/script&gt;
+&lt;script src="h5validator.js"&gt;&lt;/script&gt;
 ...
 </pre>
 
@@ -184,19 +184,19 @@ section {
 </pre>
 
             <h3>Via data attributes</h3>
-            <p>Require "js-validate" class.</p>
+            <p>Require "js-h5validator" class.</p>
 <pre class="prettyprint lang-html">
-&lt;form class="js-validate" data-validClass="success" data-invalidClass="error" data-events="change"&gt;
+&lt;form class="js-h5validator" data-validClass="success" data-invalidClass="error" data-events="change"&gt;
    ...
 &lt;/form&gt;
 </pre>
 
             <h3>Via JavaScript</h3>
 <pre class="prettyprint lang-js">
-$('#form').validate({
-    validClass: 'success',
+$('#form').h5validator({
+    validClass  : 'success',
     invalidClass: 'error',
-    events: 'change'
+    events      : 'change'
 });
 </pre>
         </section>
@@ -259,10 +259,10 @@ $('#form').on('check.validate', function(e){
         <section>
             <h2 id="DEMO">DEMO</h2>
             <p>
-                <a href="view-source:http://wata.github.io/validate.js/">source</a>
+                <a href="view-source:http://wata.github.io/h5validator.js/">source</a>
             </p>
 
-            <form id="form" class="js-validate" data-events="keyup focusout blur">
+            <form id="form" class="js-h5validator" data-events="keyup focusout blur">
                 <h3>Type Rules</h3>
                 <dl>
                     <dt><label for="email">Email</label></dt>
@@ -324,13 +324,11 @@ $('#form').on('check.validate', function(e){
         </section>
     </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="validate.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="h5validator.js"></script>
     <script>
         $('#form').on('check.validate', function(e){
-            var $target = $(e.relatedTarget);
-
-            $target
+            $(e.relatedTarget)
                 .next('.feedback')
                 .removeClass('feedback-success')
                 .removeClass('feedback-error')

@@ -1,7 +1,7 @@
-validate.js
+h5validator.js
 =====================
 
-This is client-side validation (HTML5).
+This is client-side validation for HTML5.
 
 Usage
 ---------------------
@@ -9,7 +9,7 @@ Usage
 - Via data attributes
 
     ```
-    <form class="js-validate" data-validClass="success" data-invalidClass="error" data-events="change">
+    <form class="js-h5validator" data-validClass="success" data-invalidClass="error" data-events="change">
        ...
     </form>
     ```
@@ -17,9 +17,9 @@ Usage
 - Via JavaScript
 
     ```
-    $('#form').validate({
-        validClass: 'success',
+    $('#form').h5validator({
+        validClass  : 'success',
         invalidClass: 'error',
-        events: 'change'
+        events      : 'change'
     });
     ```
